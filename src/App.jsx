@@ -1,12 +1,12 @@
+import Todo from "./Todo";
 
-import Form from "./Form";
 
 function App() {
   
   return (
     <>
     
-    <Form/>
+    <Todo/>
     </>
   );
 }
