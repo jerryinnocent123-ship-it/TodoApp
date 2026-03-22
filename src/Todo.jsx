@@ -23,6 +23,7 @@ function Todo() {
     }));
   }
 
+
   function add(task) {
     const newTask = { ...task, id: uuidv4() };
     setTaskList((previous) => [...previous, newTask]);
@@ -71,9 +72,24 @@ function Todo() {
           onChange={handleChange}
           value={formData.desc}
         />
+
         <button type="button" onClick={() => add(formData)}>
           <Plus color="green" size={iconSize} /> Ajouter
         </button>
+
+
+        <button type="button" onClick={() => add(formData)}>
+
+
+
+
+            
+          <Plus color="green" size={iconSize} /> Ajouter
+        </button>
+
+
+
+
       </form>
 
       <div>
@@ -89,6 +105,13 @@ function Todo() {
                 Delete
               </button>
               {/* Update button sa poul ka deklanche fonksyon konplete a */}
+
+
+
+
+
+
+
                 <button onClick={() => complete(task.id)} className="complete">
                 <CheckCircle color="green" size={iconSize} /> Complete
               </button>
