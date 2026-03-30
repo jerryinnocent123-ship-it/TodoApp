@@ -1,68 +1,54 @@
 import { useState } from "react"
 
 export default function Form(){
-    const [form, setForm]=useState({name:"", descr: ""})
+    const [form, setForm]=useState({name:"", mail: ""})
     const [data, setData]=useState([])
 
-    // function ki veye chanjman
-    function change(e){
-       
+    // veye chanjman
+    function handleChange(event) {
     setForm((previous) => ({
       ...previous,
-      [e.target.name]: e.target.value,
-      
+      [event.target.name]: event.target.value,
     }));
-  }  
-//  console.log(form)
-
+  }
+  
     
-    //function ki ajoutel nan list la
-    function addData(f){
-        const newData = { ...f, id: Date.now()}
-        setData((pr)=>[...pr, newData])
-        setForm({name:"", descr:""})
+   const handleSoumission = async (event)=>{
+    event.preventDefault();
 
+    try{
+        const reponse = await fetch("https://formspree.io/f/mwvrrrob", {
+            method: "POST",
+            headers:{"content-type":"application/json"},
+            body: JSON.stringify(data),
+        })
     }
+    catch(error){
+        console.log(error)
+    }
+   }
+
     
     return(
         <>
-        <div className="form">
-            <form>
+       <input type="text"
+       name="name"
+       placeholder="Enter youn name"
+       onChange={handleChange}
+       value={form.name}
+       />
 
-                <input type="text"
-                        name="name"
-                        placeholder="Enter your name"
-                        onChange={change}
-                        value={form.name}
-                 /> 
-                 <br />
+       <input type="email"
+       name="mail"
+       placeholder="Enter your mail"
+       onChange={handleChange}
+       value={form.mail}
+       />
 
-                <input type="text"
-                        name="descr"
-                         placeholder="Enter your description"
-                        onChange={change}
-                        value={form.descr}
-                 />
-                 <br />
-                 <button type="button" onClick={()=>addData(form)}>Add</button>
-            </form>
-
-            <div>
-                <h1>les choix:
-
-                </h1>
-
-                <div>
-                    {data.map((i) => {
-                     return (
-                             <ul key={i.id}>
-                                <p>{i.name}</p>
-                                <p>{i.descr}</p>
-                            </ul>
-                             )
-                            })}
-                </div>
-            </div>
-        </div>
+       <button onClick={()=>handleSoumission}>Soumettre</button>
         </>
+
+        
     )}
+
+    

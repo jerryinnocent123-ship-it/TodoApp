@@ -1,14 +1,18 @@
+import { useState, useEffect } from "react";
+import Loader from "./components/Loader";
 
-import Form from "./Form";
+export default function App() {
+  const [loading, setLoading] = useState(true);
 
-function App() {
-  
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 3000); // simulate loading
+  }, []);
+
   return (
-    <>
-    
-    <Form/>
-    </>
+    <div>
+      {loading ? <Loader /> : <h1>Content Loaded</h1>}
+    </div>
   );
 }
-
-export default App;

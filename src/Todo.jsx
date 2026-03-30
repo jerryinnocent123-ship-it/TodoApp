@@ -53,6 +53,24 @@ function Todo() {
  function deleteTaskComplete(id) {
   setTaskList(taskList.filter((task) => task.id !== id));
 }
+
+
+
+
+ const handleSoumission = async (event)=>{
+    event.preventDefault();
+
+    try{
+        const reponse = await fetch("https://formspree.io/f/mwvrrrob", {
+            method: "POST",
+            headers:{"content-type":"application/json"},
+            body: JSON.stringify(data),
+        })
+    }
+    catch(error){
+        console.log(error)
+    }
+   }
   return (
     <>
     <div className="todo-container">
@@ -78,8 +96,6 @@ function Todo() {
 
 
 
-
-            
           <Plus color="green" size={iconSize} /> Ajouter
         </button>
 
