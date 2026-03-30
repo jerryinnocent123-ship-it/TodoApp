@@ -22,7 +22,7 @@ function Todo() {
       [event.target.name]: event.target.value,
     }));
   }
- 
+
 
   function add(task) {
     const newTask = { ...task, id: uuidv4() };
@@ -91,6 +91,10 @@ function Todo() {
           value={formData.desc}
         />
 
+        <button type="button" onClick={() => add(formData)}>
+          <Plus color="green" size={iconSize} /> Ajouter
+        </button>
+
 
         <button type="button" onClick={() => add(formData)}>
 
@@ -98,6 +102,7 @@ function Todo() {
 
           <Plus color="green" size={iconSize} /> Ajouter
         </button>
+
 
 
 
@@ -116,6 +121,8 @@ function Todo() {
                 Delete
               </button>
               {/* Update button sa poul ka deklanche fonksyon konplete a */}
+
+
 
 
 
